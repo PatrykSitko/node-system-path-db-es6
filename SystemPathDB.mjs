@@ -525,26 +525,3 @@ function getStructureObject(structure, path) {
     return structure[key];
   }
 }
-// function list /*directory*/() {}
-// function read /*file*/() {}
-// function del /*file or directory*/() {}
-// function toPath() {}
-// const pathdb = new PathDB('C:/Users/Patryk Sitko/Desktop/my-videos-app/media');
-// pathdb.monitor();
-// console.log(pathdb.get('/series/naruto copy/season/1/episode/2'));
-// setTimeout(
-//   async () =>
-//     console.log(await pathdb.structure.series.naruto['image.png'].read()),
-//   1000
-// );
-// setInterval(
-//   () =>
-//     console.log(pathdb.structure.series.anime.naruto.season['1'].episode[1]),
-//   10
-// );
-// pathdb.stop();
-// console.log(
-//   fs
-//     .lstatSync('C:/Users/Patryk Sitko/Desktop/my-videos-app/.dockerignore')
-//     .isFile()
-// );
