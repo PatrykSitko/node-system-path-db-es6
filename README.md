@@ -35,3 +35,23 @@ The SystemPathDB library has 3 basic functions called:
 - addFileFunction
 
 Those functions are used for adding functionality to the database structure;
+
+#### Functionality of; addStructureFunction:
+
+The addStructureFunction is used to add functions to the structure variable that can be accessed by the SystemPathDB instance (as mentioned above).
+
+This function has the following parameters:
+
+1. function name.
+
+   Is used to name the anonimous function (declared in the second parameter); This function name can be used to call the added anonimous function described by attributing this parameter.
+
+2. anonimous function.
+
+   The anonimous function recieves 5 arguments by default wrapped into an object from the SystemPathDB instance. Those arguments are as follow:
+
+   - key (typeof string)
+   - path (typeof string)
+   - isHidden (typeof boolean)
+   - extention (typeof string)
+   - getObject (typeof function)
