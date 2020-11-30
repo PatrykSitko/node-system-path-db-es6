@@ -78,9 +78,9 @@ This function has the following 2 parameters:
 
 ---
 
-#### Functionality of; addDirFunction:
+#### Functionality of; addDirFunction & addFileFunction:
 
-The addDirFunction is used to add functions to variables of type directory located inside of the json structure. Those directory type variables can be located within the structure variable. The structure variable is accessible via the SystemPathDB instance ([as mentioned above](#accessing-the-monitored-structure)).
+The addDirFunction and addFileFunction is used to add functions to variables of type directory (or file respectively) located inside of the json structure. Those directory (or file) type variables can be located within the structure variable. The structure variable is accessible via the SystemPathDB instance ([as mentioned above](#accessing-the-monitored-structure)).
 
 This function has the following 3 parameters:
 
@@ -96,6 +96,6 @@ This function has the following 3 parameters:
 - path (typeof string)
 - isHidden (typeof boolean)
 - extention (typeof string)
-- getObject (typeof function)
+- getDatabaseStructure (typeof function)
 
 3. target.
