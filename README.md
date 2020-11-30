@@ -10,21 +10,23 @@
     or
     const databaseName = new SystemPathDB('C:\\Users\\PatrykSitko');
 
+### Monitoring an instanced object:
+
 After instantiation you need to start monitoring the directory.
 <br>
-The monitor accepts an optional attribute named interval
+The monitor function accepts an optional attribute named interval.
 <br>
-to describe at what intevals the database system has
+The interval attribute describes at what intevals the database system has to refresh the cashed structure.
 <br>
-to refresh the cashed structure The
-<br>
-default value is 100 (milliseconds).
+The default value is 100 (milliseconds).
 
     databaseName.monitor();
     or
     databaseName.monitor(25);
 
-To acces the structure you start by calling an variable attached to the instance of the database called structure:
+### Accessing the monitored structure:
+
+To acces the structure stored inside of the instance you start by calling an variable attached to the instance of the database called structure:
 
     const databaseStructure = databaseName.structure;
 
