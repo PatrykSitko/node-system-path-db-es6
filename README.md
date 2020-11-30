@@ -24,6 +24,17 @@ The default value is 100 (milliseconds).
     or
     databaseName.monitor(25);
 
+To stop monitoring an instance; You have to call the stopMonitoring function of that instance.
+(You can start and stop monitoring an instance as many times as you need.)
+
+    databaseName.stopMonitoring();
+
+If you want to update the structure without monitoring it, you have to call the update function for that instance.
+
+    databaseName.update();
+
+This will update the structure once, while or while-not monitoring it.
+
 ### Accessing the monitored structure:
 
 To acces the structure stored inside of the instance you start by calling an variable attached to the instance of the database called structure:
