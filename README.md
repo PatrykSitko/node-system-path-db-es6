@@ -30,6 +30,10 @@ To acces the structure stored inside of the instance you start by calling an var
 
     const databaseStructure = databaseName.structure;
 
+the structure variable is a get (syntax) function that returns an javascript object notation of underlying folders and files. Files have their extention trimmed if one was present; A file named text-file.txt will become text-file inside of the json structure.
+
+### 3 basic functions to extend functionality of the structure:
+
 The SystemPathDB library has 3 basic functions called:
 
 - addStructureFunction
@@ -37,6 +41,8 @@ The SystemPathDB library has 3 basic functions called:
 - addFileFunction
 
 Those functions are used for adding functionality to the database structure;
+
+---
 
 #### Functionality of; addStructureFunction:
 
@@ -69,3 +75,7 @@ This function has the following parameters:
    The extention argument by default returns null.
    <br>
    (The root path has no extention.)
+
+---
+
+#### Functionality of; addDirFunction:
