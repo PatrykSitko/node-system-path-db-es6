@@ -46,9 +46,9 @@ Those functions are used for adding functionality to the database structure;
 
 #### Functionality of; addStructureFunction:
 
-The addStructureFunction is used to add functions to the structure variable that can be accessed by the SystemPathDB instance (as mentioned above).
+The addStructureFunction is used to add functions to the structure variable that can be accessed via the SystemPathDB instance ([as mentioned above](#accessing-the-monitored-structure)).
 
-This function has the following parameters:
+This function has the following 2 parameters:
 
 1. function name.
 
@@ -62,7 +62,7 @@ This function has the following parameters:
 
    The path argument by default returns an empty string.
    <br>
-   As the structure variable accessed trough the SystemPathDB instance is the root path of the structure.
+   As the structure variable accessed via the SystemPathDB instance is the root path of the structure.
 
    - getDatabaseStructure (typeof function)
 
@@ -79,3 +79,23 @@ This function has the following parameters:
 ---
 
 #### Functionality of; addDirFunction:
+
+The addDirFunction is used to add functions to variables of type directory located inside of the json structure. Those directory type variables can be located within the structure variable. The structure variable is accessible via the SystemPathDB instance ([as mentioned above](#accessing-the-monitored-structure)).
+
+This function has the following 3 parameters:
+
+1. function name.
+
+   Is used to name the anonimous function (declared in the second parameter); This function name can be used to call the added anonimous function described by attributing this parameter.
+
+2. anonimous function.
+
+   The anonimous function of addDirFunction recieves 5 arguments by default wrapped into an object from the SystemPathDB instance. Those arguments are as follow:
+
+- key (typeof string)
+- path (typeof string)
+- isHidden (typeof boolean)
+- extention (typeof string)
+- getObject (typeof function)
+
+3. target.
