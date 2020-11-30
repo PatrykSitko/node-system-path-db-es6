@@ -6,9 +6,11 @@
 
 ### Instantiating an object:
 
+    ```javascript
     const databaseName = new SystemPathDB('/home/user');
     or
     const databaseName = new SystemPathDB('C:\\Users\\PatrykSitko');
+    ```
 
 ### Monitoring the structure of an instanced object:
 
@@ -37,7 +39,7 @@ If you want to update the structure without the use of the monitor function. You
 
 This will update the structure once, while or while-not monitoring it.
 
-### Accessing the monitored structure:
+### Accessing the (monitored) structure:
 
 To acces the structure stored inside of the instance you start by calling an variable attached to the instance of the database called structure:
 
@@ -53,7 +55,9 @@ The SystemPathDB library has 3 basic functions called:
 - addDirFunction
 - addFileFunction
 
-Those functions are used for adding functionality to the database structure;
+Those functions are accessible from within the SystemPathDB instance,
+<br>
+and are used for adding functionality to the database structure.
 
 ---
 
