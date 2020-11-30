@@ -48,10 +48,22 @@ This function has the following parameters:
 
 2. anonimous function.
 
-   The anonimous function recieves 5 arguments by default wrapped into an object from the SystemPathDB instance. Those arguments are as follow:
+   The anonimous function of addStructureFunction recieves 3 arguments by default wrapped into an object from the SystemPathDB instance. Those arguments are as follow:
 
-   - key (typeof string)
    - path (typeof string)
-   - isHidden (typeof boolean)
+
+   The path argument by default returns an empty string.
+   <br>
+   As the structure variable accessed trough the SystemPathDB instance is the root path of the structure.
+
+   - getDatabaseStructure (typeof function)
+
+   The getDatabaseStructure function returns the database structure variable.
+   <br>
+   This function is made available to render easier access to the database structure from within the anonimous function.
+
    - extention (typeof string)
-   - getObject (typeof function)
+
+   The extention argument by default returns null.
+   <br>
+   (The root path has no extention.)
