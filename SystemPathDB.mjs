@@ -3,8 +3,8 @@ import fs from "fs";
 const errors = { OPERATION_LOCKED: "OPERATION_LOCKED" };
 function addPredefinedFunctions() {
   this.skipUpdate = true;
-  this.addStructureFunction("list", ({ getObject }) => {
-    const copy = { ...getObject() };
+  this.addStructureFunction("list", ({ getDatabaseStructure }) => {
+    const copy = { ...getDatabaseStructure() };
     delete copy.extention;
     delete copy.path;
     delete copy.list;
@@ -29,8 +29,8 @@ function addPredefinedFunctions() {
     }
     return Object.keys(copy);
   });
-  this.addDirFunction("includes", ({ getObject }, key) =>
-    getObject().list().includes(key)
+  this.addDirFunction("includes", ({ getDatabaseStructure }, key) =>
+    getDatabaseStructure().list().includes(key)
   );
   this.addDirFunction("new", function ({ path }, name, content = null) {
     return new Promise((resolve, reject) => {
@@ -216,7 +216,7 @@ export default class SystemPathDB {
   get structure() {
     for (let { funcName, func } of this.functions.structure) {
       this.database.structure[funcName] = func.bind(this, {
-        getObject: () => this.database.structure,
+        getDatabaseStructure: () => this.database.structure,
         path: "",
         extention: null,
       });
@@ -479,7 +479,7 @@ function objectify(
         if (target === "*" || target === objectKey || target === key) {
           requestedFunctions[funcName] = func.bind(this, {
             ...objectifiedPath[objectKey],
-            getObject: () => this.get(`${currentPath}/${key}`),
+            getDatabaseStructure: () => this.get(`${currentPath}/${key}`),
           });
         }
       }
@@ -491,7 +491,7 @@ function objectify(
         if (target === "*.*" || target === objectKey || target === key) {
           requestedFunctions[funcName] = func.bind(this, {
             ...objectifiedPath[objectKey],
-            getObject: () => this.get(`${currentPath}/${key}`),
+            getDatabaseStructure: () => this.get(`${currentPath}/${key}`),
           });
         }
       }
