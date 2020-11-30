@@ -10,7 +10,7 @@
     or
     const databaseName = new SystemPathDB('C:\\Users\\PatrykSitko');
 
-### Monitoring an instanced object:
+### Monitoring the structure of an instanced object:
 
 After instantiation you need to start monitoring the directory.
 <br>
@@ -29,7 +29,9 @@ To stop monitoring an instance; You have to call the stopMonitoring function of 
 
     databaseName.stopMonitoring();
 
-If you want to update the structure without monitoring it, you have to call the update function for that instance.
+#### Updating the structure of an instanced object:
+
+If you want to update the structure without the use of the monitor function. You have to call the update function for the targeted instance.
 
     databaseName.update();
 
