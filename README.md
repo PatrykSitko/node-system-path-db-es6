@@ -6,11 +6,11 @@
 
 ### Instantiating an object:
 
-    ```javascript
     const databaseName = new SystemPathDB('/home/user');
     or
     const databaseName = new SystemPathDB('C:\\Users\\PatrykSitko');
-    ```
+
+---
 
 ### Monitoring the structure of an instanced object:
 
@@ -39,6 +39,8 @@ If you want to update the structure without the use of the monitor function. You
 
 This will update the structure once, while or while-not monitoring it.
 
+---
+
 ### Accessing the (monitored) structure:
 
 To acces the structure stored inside of the instance you start by calling an variable attached to the instance of the database called structure:
@@ -46,6 +48,8 @@ To acces the structure stored inside of the instance you start by calling an var
     const databaseStructure = databaseName.structure;
 
 the structure variable is a get (syntax) function that returns an javascript object notation of underlying folders and files. Files have their extention trimmed if one was present; A file named text-file.txt will become text-file inside of the json structure.
+
+---
 
 ### 3 basic functions to extend functionality of the structure:
 
@@ -59,9 +63,7 @@ Those functions are accessible from within the SystemPathDB instance,
 <br>
 and are used for adding functionality to the database structure.
 
----
-
-#### Functionality of; addStructureFunction:
+#### >>> Functionality of; addStructureFunction:
 
 The addStructureFunction is used to add functions to the structure variable that can be accessed via the SystemPathDB instance ([as mentioned above](#accessing-the-monitored-structure)).
 
@@ -93,9 +95,7 @@ This function has the following 2 parameters:
    <br>
    (The root path has no extention.)
 
----
-
-#### Functionality of; addDirFunction & addFileFunction:
+#### >>> Functionality of; addDirFunction & addFileFunction:
 
 The addDirFunction and addFileFunction is used to add functions to variables of type directory (or file respectively) located inside of the json structure. Those directory (or file) type variables can be located within the structure variable. The structure variable is accessible via the SystemPathDB instance ([as mentioned above](#accessing-the-monitored-structure)).
 
