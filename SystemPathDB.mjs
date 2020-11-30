@@ -203,9 +203,9 @@ export default class SystemPathDB {
       }, interval);
     }
   }
-  stop() {
-    this.isMonitoring = true;
+  stopMonitoring() {
     clearInterval(this.interval);
+    this.isMonitoring = false;
   }
   operationIsLocked(key) {
     return this.lock.includes[key];
