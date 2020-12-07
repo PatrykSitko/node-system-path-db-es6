@@ -1,0 +1,13 @@
+{
+  "name": "system-path-db",
+  "version": "1.0.0",
+  "description": "SystemPathDB is a library for Node.js with focus on objectifying the specified path location.",
+  "main": "SystemPathDB.mjs",
+  "repository": "https://github.com/PatrykSitko/Node-SystemPathDB.git",
+  "author": "Patryk Sitko <patryk.sitko.algemeen@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test": "node --experimental-modules ./tests/index.mjs"
+  }
+}
