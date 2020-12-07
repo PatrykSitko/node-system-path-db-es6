@@ -180,3 +180,36 @@ This function has the following 3 parameters:
      This function is made available to render easier access to the database structure from within the anonimous function.
 
 3. target.
+
+   Is used to target specific keys inside of the structure.
+   <br>
+   Example:
+   <br>
+   path to structure: `/home/user/`
+   <br>
+   structure:`/documents/file.pdf` &
+   `/downoads/documents/ect...`
+   <br>
+   target: `documents`
+   <br>
+   By adding functions to specific key targets. The functions will be invocable only to the targeted key inside of the structure; Example:
+   <br>
+   `databaseName.addDirFunction("consoleLogAttributes",console.log,"documents");`
+   <br>
+   valid invocations:
+   <br>
+   `databaseName.structure.documents.consoleLogAttributes();`
+   <br>
+   `databaseName.structure.downloads.documents.consoleLogAttributes();`
+   <br>
+   invalid invocations:
+   <br>
+   `databaseName.structure.documents.file.consoleLogAttributes();` (it's nor a directory nor the targeted key.)
+   <br>
+   `databaseName.structure.downloads.consoleLogAttributes();` (it's not the targeted key.)
+
+   **(
+   Missing target functionality; Target structure paths:
+   <br>
+   `databaseName.addDirFunction("consoleLogAttributes",console.log,"downloads/documents");`
+   )**
