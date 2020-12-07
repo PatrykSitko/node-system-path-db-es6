@@ -86,7 +86,7 @@ export default class SystemPathDB {
     for (let { funcName, func } of this.functions.structure) {
       this.database.structure[funcName] = func.bind(this, {
         getDatabaseStructure: () => this.database.structure,
-        path: "",
+        path: "/",
         extention: null,
       });
     }
@@ -315,7 +315,9 @@ function objectify(
   const objectifiedPath = {
     [objectKey]: {
       key: objectKey,
-      path: `${currentPath}/${key}`,
+      path: !`${currentPath}/${key}`.startsWith("/")
+        ? `/${currentPath}/${key}`
+        : `${currentPath}/${key}`,
       isHidden,
       extention,
       ...(key === path
