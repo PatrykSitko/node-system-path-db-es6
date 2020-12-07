@@ -11,11 +11,20 @@ export default function SystemPathDBPredefinedFunctions() {
     delete copy.getAbsolutePath;
     return Object.keys(copy);
   });
-  this.addStructureFunction("getAbsolutePath", () => this.folderLocation);
-  this.addDirFunction(
-    "getAbsolutePath",
-    ({ path }) => `${this.folderLocation}/${path}`
-  );
+  this.addStructureFunction("getAbsolutePath", () => {
+    let absolutePath = `${this.folderLocation}`;
+    do {
+      absolutePath = absolutePath.replace("\\", "/");
+    } while (absolutePath.includes("\\"));
+    return absolutePath;
+  });
+  this.addDirFunction("getAbsolutePath", ({ path }) => {
+    let absolutePath = `${this.folderLocation}${path}`;
+    do {
+      absolutePath = absolutePath.replace("\\", "/");
+    } while (absolutePath.includes("\\"));
+    return absolutePath;
+  });
   this.addDirFunction("isDirectory", () => true);
   this.addDirFunction("isFile", () => false);
   this.addDirFunction("list", (object) => {
@@ -87,10 +96,13 @@ export default function SystemPathDBPredefinedFunctions() {
     };
     return deleteFolderRecursive(`${this.folderLocation}/${path}`);
   });
-  this.addFileFunction(
-    "getAbsolutePath",
-    ({ path }) => `${this.folderLocation}/${path}`
-  );
+  this.addFileFunction("getAbsolutePath", ({ path }) => {
+    let absolutePath = `${this.folderLocation}${path}`;
+    do {
+      absolutePath = absolutePath.replace("\\", "/");
+    } while (absolutePath.includes("\\"));
+    return absolutePath;
+  });
   this.addFileFunction("isDirectory", () => false);
   this.addFileFunction("isFile", () => true);
   this.addFileFunction("read", async function ({ path, extention }) {
