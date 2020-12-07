@@ -218,4 +218,4 @@ This function has the following 3 parameters:
    <br>
    And addFileFunction targets everything using the asterix-dot-asterix pointer ("\*.\*").
    <br>
-   Both are default values of the target attribute of their respective function.
+   Both are default values of the target attribute of their respective function (addDirFunction & addFileFunction).
