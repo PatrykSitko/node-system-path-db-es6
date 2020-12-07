@@ -230,3 +230,7 @@ This function has the following 3 parameters:
 ---
 
 ### Predefined file functions:
+
+---
+
+### Predefined structure functions:
