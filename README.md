@@ -192,7 +192,7 @@ This function has the following 3 parameters:
    <br>
    target: `documents`
    <br>
-   By adding a function to specific key target. The function will be invocable only trough the targeted key inside of the structure; Example:
+   By adding a function to a specific (key/)target. The function will be invocable only trough the targeted key inside of the structure; Example:
    <br>
    `databaseName.addDirFunction("consoleLogAttributes",console.log,"documents");`
    <br>
