@@ -185,16 +185,17 @@ This function has the following 3 parameters:
    <br>
    Example:
    <br>
-   Path to database structure: `/home/user/`.
+   Path to database structure: `/home/user/`
    <br>
    System structure paths starting from the path to database structure:
    <br>
    `/documents/file.pdf` &
-   `/downoads/documents/ect...`.
+   `/downoads/documents/ect...`
    <br>
-   Target: `documents`.
+   Target: `documents`
    <br>
-   By adding a function to a specific (key/)target. The function will be invocable only trough the targeted key inside of the structure; Example:
+   By adding a function to a specific (key/)target.
+   <br>The function will be invocable only trough the targeted key inside of the structure; Example:
    <br>
    `databaseName.addDirFunction("consoleLogAttributes",console.log,"documents");`
    <br>
