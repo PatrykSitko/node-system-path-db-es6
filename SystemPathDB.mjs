@@ -1,6 +1,7 @@
 import fs from "fs";
 import checkPath from "./modules/checkPath.mjs";
 import joinObjects from "./modules/joinObjects.mjs";
+import getValueFromObjectStructure from "./modules/getValueFromObjectStructure.mjs";
 
 const errors = { OPERATION_LOCKED: "OPERATION_LOCKED" };
 function addPredefinedFunctions() {
@@ -226,7 +227,7 @@ export default class SystemPathDB {
     return this.database.structure;
   }
   get(path) {
-    return getObjectFromStructure(this.structure, path);
+    return getValueFromObjectStructure(this.structure, path);
   }
   create(
     path,
