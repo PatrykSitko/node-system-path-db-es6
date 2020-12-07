@@ -207,7 +207,7 @@ This function has the following 3 parameters:
    <br>
    invalid invocations:
    <br>
-   `databaseName.structure.documents.file.consoleLogAttributes();` (it's nor a directory nor the targeted key.)
+   `databaseName.structure.documents.file_pdf.consoleLogAttributes();` (it's nor a directory nor the targeted key.)
    <br>
    `databaseName.structure.downloads.consoleLogAttributes();` (it's not the targeted key.)
 
