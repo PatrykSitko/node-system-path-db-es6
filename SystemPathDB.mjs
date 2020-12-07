@@ -1,4 +1,6 @@
 import fs from "fs";
+import checkPath from "./modules/checkPath.mjs";
+import joinObjects from "./modules/joinObjects.mjs";
 
 const errors = { OPERATION_LOCKED: "OPERATION_LOCKED" };
 function addPredefinedFunctions() {
@@ -224,7 +226,7 @@ export default class SystemPathDB {
     return this.database.structure;
   }
   get(path) {
-    return getStructureObject(this.structure, path);
+    return getObjectFromStructure(this.structure, path);
   }
   create(
     path,
@@ -384,21 +386,6 @@ function map(source, initialSource = null) {
   return mapped;
 }
 
-function join(obj1, obj2) {
-  let finalObject = { ...obj1 };
-  for (let key in obj2) {
-    if (typeof finalObject[key] !== "object") {
-      finalObject[key] = {};
-    }
-    if (typeof obj2[key] === "object") {
-      finalObject[key] = join(finalObject[key], obj2[key]);
-    } else {
-      finalObject[key] = obj2[key];
-    }
-  }
-  return finalObject;
-}
-
 function obj(mapped, functions, folderLocation) {
   let objectified = [];
   let obj = {};
@@ -413,7 +400,7 @@ function obj(mapped, functions, folderLocation) {
     }
   }
   for (let object of objectified) {
-    obj = join(obj, object);
+    obj = joinObjects(obj, object);
   }
   return obj;
 }
@@ -502,26 +489,4 @@ function objectify(
     ...requestedFunctions,
   };
   return objectifiedPath;
-}
-
-function checkPath(path) {
-  path = path.replace("\\", "/");
-  if (path.startsWith("/")) {
-    path = path.substring(1, path.length);
-  }
-  if (path.endsWith("/")) {
-    path = path.substring(0, path.length - 1);
-  }
-  return path;
-}
-function getStructureObject(structure, path) {
-  path = checkPath(path);
-  const [key, ...otherKeys] = path.split("/");
-  if (structure[key] === undefined) {
-    return undefined;
-  } else if (otherKeys.length >= 1) {
-    return getStructureObject(structure[key], otherKeys.join("/"));
-  } else {
-    return structure[key];
-  }
 }
