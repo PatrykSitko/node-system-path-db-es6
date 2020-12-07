@@ -132,7 +132,7 @@ This function has the following 3 parameters:
 
    - extention (typeof string)
 
-     The extention argument of the anonimous function returns the file extension (Ex.: "txt") or is empty if it's an directory (Ex.: "").
+     The extention argument of the anonimous function returns the file extension (Ex.: "txt") or is undefined if it's an directory.
 
    - getDatabaseStructure (typeof function)
 
