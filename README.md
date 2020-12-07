@@ -187,7 +187,7 @@ This function has the following 3 parameters:
    <br>
    path to structure: `/home/user/`
    <br>
-   structure:`/documents/file.pdf` &
+   structure paths:`/documents/file.pdf` &
    `/downoads/documents/ect...`
    <br>
    target: `documents`
