@@ -225,12 +225,30 @@ This function has the following 3 parameters:
 
 ---
 
+### Predefined structure functions:
+
+- list
+- getAbsolutePath
+
+---
+
 ### Predefined directory functions:
+
+- getAbsolutePath
+- isDirectory
+- isFile
+- list
+- includes
+- new
+- delete
 
 ---
 
 ### Predefined file functions:
 
----
-
-### Predefined structure functions:
+- getAbsolutePath
+- isDirectory
+- isFile
+- read
+- write
+- delete
