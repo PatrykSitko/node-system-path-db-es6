@@ -112,21 +112,21 @@ This function has the following 3 parameters:
    - key (typeof string)
 
      The key argument of the anonimous function defines the current directory or file name inside of the json structure.
-     (Ex.:`databaseName.structure.home.user.addDirFunction("consoleLogKey",({key})=>{console.log(key);},"user");`
-     logs "user" to the console.
+     (Ex.:`databaseName.structure.downloads.documents.addDirFunction("consoleLogKey",({key})=>{console.log(key);});`
+     logs "documents" to the console in this case.
      )
 
    - path (typeof string)
 
      The path argument of the anonimous function defines the current path inside of the json structure (including the key argument).
-     (Ex.:`databaseName.structure.home.user.addDirFunction("consoleLogPath",({path})=>{console.log(path);},"user");`
-     logs "home/user" to the console.
+     (Ex.:`databaseName.structure.downloads.documents.addDirFunction("consoleLogPath",({path})=>{console.log(path);});`
+     logs "downloads/documents" to the console in this case.
      )
 
    - isHidden (typeof boolean)
 
      The isHidden argument of the anonimous function defines whether the file is hidden or not inside of the system structure.
-     (Ex.:`databaseName.structure.home.user.addDirFunction("consoleLogIsHidden",({isHidden})=>{console.log(isHidden);},"*");`
+     (Ex.:`databaseName.structure.downloads.addDirFunction("consoleLogIsHidden",({isHidden})=>{console.log(isHidden);},"*");`
      logs "false" to the console in this case.
      )
 
