@@ -304,7 +304,12 @@ function objectify(
       objectKey.lastIndexOf(".") + 1,
       objectKey.length
     );
-    objectKey = objectKey.substring(0, objectKey.lastIndexOf("."));
+    objectKey = objectKey
+      .substring(0, objectKey.lastIndexOf("."))
+      .concat("_")
+      .concat(
+        objectKey.substring(objectKey.lastIndexOf(".") + 1, objectKey.length)
+      );
   }
   const requestedFunctions = {};
   const objectifiedPath = {
