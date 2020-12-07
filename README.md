@@ -185,9 +185,11 @@ This function has the following 3 parameters:
    <br>
    Example:
    <br>
-   path to structure: `/home/user/`
+   path to database structure: `/home/user/`
    <br>
-   structure paths: `/documents/file.pdf` &
+   system structure paths starting from path to database structure:
+   <br>
+   `/documents/file.pdf` &
    `/downoads/documents/ect...`
    <br>
    target: `documents`
