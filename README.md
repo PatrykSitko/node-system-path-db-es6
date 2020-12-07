@@ -185,14 +185,14 @@ This function has the following 3 parameters:
    <br>
    Example:
    <br>
-   path to database structure: `/home/user/`
+   Path to database structure: `/home/user/`.
    <br>
-   system structure paths starting from the path to database structure:
+   System structure paths starting from the path to database structure:
    <br>
    `/documents/file.pdf` &
-   `/downoads/documents/ect...`
+   `/downoads/documents/ect...`.
    <br>
-   target: `documents`
+   Target: `documents`.
    <br>
    By adding a function to a specific (key/)target. The function will be invocable only trough the targeted key inside of the structure; Example:
    <br>
