@@ -47,7 +47,7 @@ To acces the structure stored inside of the instance you start by calling an var
 
     const databaseStructure = databaseName.structure;
 
-the structure variable is a get (syntax) function that returns an javascript object notation of underlying folders and files. Files have their extention trimmed if one was present; A file named text-file.txt will become text-file inside of the json structure.
+the structure variable is a get (syntax) function that returns an javascript object notation of underlying folders and files. Files have their extention separator replaced with an underscore if one was present; A file named text-file.txt will become text-file_txt inside of the json structure.
 
 ---
 
