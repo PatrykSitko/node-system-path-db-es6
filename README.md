@@ -187,7 +187,7 @@ This function has the following 3 parameters:
    <br>
    path to database structure: `/home/user/`
    <br>
-   system structure paths starting from path to database structure:
+   system structure paths starting from the path to database structure:
    <br>
    `/documents/file.pdf` &
    `/downoads/documents/ect...`
