@@ -7,8 +7,9 @@ export default function SystemPathDBPredefinedFunctions() {
     const copy = { ...getDatabaseStructure() };
     delete copy.extention;
     delete copy.path;
-    delete copy.list;
-    delete copy.getAbsolutePath;
+    this.functions.structure.forEach(({ funcName }) => {
+      delete copy[funcName];
+    });
     return Object.keys(copy);
   });
   this.addStructureFunction("getAbsolutePath", () => {
