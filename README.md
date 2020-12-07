@@ -109,10 +109,35 @@ This function has the following 3 parameters:
 
    The anonimous function of addDirFunction recieves 5 arguments by default wrapped into an object from the SystemPathDB instance. Those arguments are as follow:
 
-- key (typeof string)
-- path (typeof string)
-- isHidden (typeof boolean)
-- extention (typeof string)
-- getDatabaseStructure (typeof function)
+   - key (typeof string)
+
+     The key argument of the anonimous function defines the current directory or file name inside of the json structure.
+     (Ex.:`databaseName.structure.home.user.addDirFunction("consoleLogKey",({key})=>{console.log(key);},"user");`
+     logs "user" to the console.
+     )
+
+   - path (typeof string)
+
+     The path argument of the anonimous function defines the current path inside of the json structure (including the key argument).
+     (Ex.:`databaseName.structure.home.user.addDirFunction("consoleLogPath",({path})=>{console.log(path);},"user");`
+     logs "home/user" to the console.
+     )
+
+   - isHidden (typeof boolean)
+
+     The isHidden argument of the anonimous function defines whether the file is hidden or not inside of the system structure.
+     (Ex.:`databaseName.structure.home.user.addDirFunction("consoleLogIsHidden",({isHidden})=>{console.log(isHidden);},"*");`
+     logs "false" to the console in this case.
+     )
+
+   - extention (typeof string)
+
+     The extention argument of the anonimous function returns the file extension (Ex.: "txt") or is empty if it's an directory (Ex.: "").
+
+   - getDatabaseStructure (typeof function)
+
+     The getDatabaseStructure function returns the database structure variable.
+     <br>
+     This function is made available to render easier access to the database structure from within the anonimous function.
 
 3. target.
