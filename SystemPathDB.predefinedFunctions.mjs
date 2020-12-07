@@ -7,7 +7,7 @@ export default function SystemPathDBPredefinedFunctions() {
     const copy = { ...getDatabaseStructure() };
     delete copy.extention;
     delete copy.path;
-    this.functions.structure.forEach(({ funcName }) => {
+    this.functionNames.structure.forEach((funcName) => {
       delete copy[funcName];
     });
     return Object.keys(copy);
@@ -34,9 +34,9 @@ export default function SystemPathDBPredefinedFunctions() {
     delete copy.path;
     delete copy.isHidden;
     delete copy.extention;
-    for (let func of this.functionNames.dir) {
-      delete copy[func];
-    }
+    this.functionNames.dir.forEach((funcName) => {
+      delete copy[funcName];
+    });
     return Object.keys(copy);
   });
   this.addDirFunction("includes", ({ getDatabaseStructure }, key) =>
