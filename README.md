@@ -79,7 +79,7 @@ This function has the following 2 parameters:
 
    - path (typeof string)
 
-   The path argument by default returns an empty string.
+   The path argument by default returns an string with a forward slash.
    <br>
    As the structure variable accessed via the SystemPathDB instance is the root path of the structure.
 
@@ -141,11 +141,11 @@ This function has the following 3 parameters:
      <br>
      `databaseName.structure.downloads.consoleLogPath();`
      <br>
-     logs "downloads" to the console in this case.
+     logs "/downloads" to the console in this case.
      <br>
      `databaseName.structure.downloads.documents.consoleLogPath();`
      <br>
-     logs "downloads/documents" to the console in this case.
+     logs "/downloads/documents" to the console in this case.
      <br>
      )
 
@@ -185,7 +185,7 @@ This function has the following 3 parameters:
    <br>
    Example:
    <br>
-   Path to database structure: `/home/user/`
+   Path to database structure: `/home/user`
    <br>
    System structure paths starting from the path to database structure:
    <br>
