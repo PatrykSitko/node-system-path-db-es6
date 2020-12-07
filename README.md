@@ -115,7 +115,7 @@ This function has the following 3 parameters:
      <br>
      (Ex.:
      <br>
-     `databaseName.structure.addDirFunction("consoleLogKey",({key})=>{console.log(key);});`
+     `databaseName.addDirFunction("consoleLogKey",({key})=>{console.log(key);});`
      <br>
      Usecases:
      <br>
@@ -135,7 +135,7 @@ This function has the following 3 parameters:
      <br>
      (Ex.:
      <br>
-     `databaseName.structure.addDirFunction("consoleLogPath",({path})=>{console.log(path);});`
+     `databaseName.addDirFunction("consoleLogPath",({path})=>{console.log(path);});`
      <br>
      Usecases:
      <br>
@@ -155,7 +155,7 @@ This function has the following 3 parameters:
      <br>
      (Ex.:
      <br>
-     `databaseName.structure.addDirFunction("consoleLogIsHidden",({isHidden})=>{console.log(isHidden);},"*");`
+     `databaseName.addDirFunction("consoleLogIsHidden",({isHidden})=>{console.log(isHidden);},"*");`
      <br>
      Usecases:
      <br>
