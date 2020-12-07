@@ -65,7 +65,7 @@ and are used for adding functionality to the database structure.
 
 #### >>> Functionality of; addStructureFunction:
 
-The addStructureFunction is used to add functions to the structure variable that can be accessed via the SystemPathDB instance ([as mentioned above](#accessing-the-monitored-structure)).
+The addStructureFunction is used to add functions to the structure variable that can be accessed via the SystemPathDB instance ([as mentioned above](#accessing-the-monitored-structure)) and is a function that can be invoked from the instance itself (`databaseName.addStructureFunction("funcName",console.log);`).
 
 This function has the following 2 parameters:
 
@@ -97,7 +97,7 @@ This function has the following 2 parameters:
 
 #### >>> Functionality of; addDirFunction & addFileFunction:
 
-The addDirFunction and addFileFunction is used to add functions to variables of type directory (or file respectively) located inside of the json structure. Those directory (or file) type variables can be located within the structure variable. The structure variable is accessible via the SystemPathDB instance ([as mentioned above](#accessing-the-monitored-structure)).
+The addDirFunction and addFileFunction is used to add functions to variables of type directory (or file respectively) located inside of the json structure. Those directory (or file) type variables can be located within the structure variable. The structure variable is accessible via the SystemPathDB instance ([as mentioned above](#accessing-the-monitored-structure)) and those functions can be invoked from the instance itself (Ex.:`databaseName.addFileFunction("funcName",console.log,"targetKey");`).
 
 This function has the following 3 parameters:
 
