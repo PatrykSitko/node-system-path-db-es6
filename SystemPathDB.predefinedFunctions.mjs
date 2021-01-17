@@ -1,3 +1,4 @@
+import fs from "fs";
 /** Has access to the this keyword of the SystemPathDB class.
  * This function gets invoced inside of the SystemPathDB constructor.
  */
