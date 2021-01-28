@@ -1,5 +1,5 @@
 import fs from "fs";
-import checkPath from "./modules/checkPath.mjs";
+import formatPath from "./modules/formatPath.mjs";
 import joinObjects from "./modules/joinObjects.mjs";
 import getValueFromObjectStructure from "./modules/getValueFromObjectStructure.mjs";
 import addPredefinedFunctions from "./SystemPathDB.predefinedFunctions.mjs";
@@ -102,7 +102,7 @@ export default class SystemPathDB {
     options = { force: false }
   ) {
     const { force } = arguments[arguments.length - 1];
-    path = checkPath(path);
+    path = formatPath(path);
     const pathEntrys = path.split("/");
     let potentialPath = `${this.folderLocation}`;
     for (let i = 0; i < pathEntrys.length; i++) {
@@ -145,7 +145,7 @@ export default class SystemPathDB {
     return true;
   }
   delete(path) {
-    path = checkPath(path);
+    path = formatPath(path);
     const deleteFolderRecursive = (path) => {
       try {
         if (fs.existsSync(path)) {
@@ -278,8 +278,8 @@ function objectify(
   folderLocation = undefined,
   currentPath = ""
 ) {
-  path = checkPath(path);
-  currentPath = checkPath(currentPath);
+  path = formatPath(path);
+  currentPath = formatPath(currentPath);
   let key = undefined;
   if (path.includes("/")) {
     key = path.substring(0, path.indexOf("/") + 1).replace("/", "");
