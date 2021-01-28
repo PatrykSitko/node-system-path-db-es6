@@ -2,7 +2,7 @@
  * @param {String} path accepts a string and formats it to the right path structure.
  * @returns {String} returns a validly formatted path.
  */
-export default function checkPath(path) {
+export default function formatPath(path) {
   let pathCopy = `${path}`;
   do {
     pathCopy = pathCopy.replace("\\", "/");
