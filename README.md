@@ -229,6 +229,8 @@ This function has the following 3 parameters:
 
 - list
 - getAbsolutePath
+- includes
+- new
 
 ---
 
