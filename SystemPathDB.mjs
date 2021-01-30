@@ -3,11 +3,14 @@ import formatPath from "./modules/formatPath.mjs";
 import joinObjects from "./modules/joinObjects.mjs";
 import getValueFromObjectStructure from "./modules/getValueFromObjectStructure.mjs";
 import addPredefinedFunctions from "./SystemPathDB.predefinedFunctions.mjs";
+import addUserFunctions from "./SystemPathDB.userFunctions.mjs";
 import errors from "./SystemPathDB.errors.mjs";
 
 export default class SystemPathDB {
   lock = [];
   cache = {};
+  userLock = [];
+  userCache = {};
   database = { paths: [], structure: {} };
   functions = {
     dir: [],
@@ -25,20 +28,28 @@ export default class SystemPathDB {
       );
     }
     addPredefinedFunctions.bind(this)();
+    addUserFunctions.bind(this)();
     this.initialRun = true;
     this.update();
     this.initialRun = false;
   }
   update() {
-    if (!this.skipUpdate) {
-      this.database.paths = map(this.folderLocation);
-      this.database.structure = obj.bind(this)(
-        this.database.paths,
-        this.functions,
-        this.folderLocation
-      );
+    if (!this.upating) {
+      this.updating = true;
+      new Promise(
+        function (resolve) {
+          if (!this.skipUpdate) {
+            this.database.paths = map(this.folderLocation);
+            this.database.structure = obj.bind(this)(
+              this.database.paths,
+              this.functions,
+              this.folderLocation
+            );
+          }
+          resolve((this.updating = false));
+        }.bind(this)
+      ).then(() => this.updateCache());
     }
-    this.updateCache();
   }
   updateCache() {
     if (!this.updatingCache) {
