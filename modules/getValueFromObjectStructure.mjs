@@ -6,7 +6,7 @@ import formatPath from "./formatPath.mjs";
  * @return {Object || undefined} returns the objects value from within the structure of the matching path or undefined if object is not found.
  */
 export default function getValueFromObjectStructure(structure, path) {
-  path = checkPath(path);
+  path = formatPath(path);
   const [key, ...otherKeys] = path.split("/");
   if (structure[key] === undefined) {
     return undefined;
