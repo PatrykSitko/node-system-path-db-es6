@@ -1,4 +1,4 @@
-import checkPath from "./checkPath.mjs";
+import formatPath from "./formatPath.mjs";
 
 /**
  * @param {Object} structure a json object that contains a structure.
