@@ -57,15 +57,15 @@ export function updateUsers() {
 export default function SystemPathDBUserFunctions() {
   this.addStructureFunction(
     "registerUser",
-    async ({ getDatabaseStructure }, registrationData = {}) => {
+    async ({ getDatabaseStructure }, email, registrationData = {}) => {
       if (!getDatabaseStructure().includes("users")) {
         await getDatabaseStructure().new("users");
       }
       if (!getDatabaseStructure().users.includes(`${email}_USER`)) {
-        await getDatabaseStructure().users.new(
-          `${email}.USER`,
-          registrationData
-        );
+        await getDatabaseStructure().users.new(`${email}.USER`, {
+          email,
+          ...registrationData,
+        });
       }
       return getDatabaseStructure().users.includes(`${email}_USER`);
     }
