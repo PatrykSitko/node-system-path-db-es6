@@ -3,7 +3,9 @@ import formatPath from "./modules/formatPath.mjs";
 import joinObjects from "./modules/joinObjects.mjs";
 import getValueFromObjectStructure from "./modules/getValueFromObjectStructure.mjs";
 import addPredefinedFunctions from "./SystemPathDB.predefinedFunctions.mjs";
-import addUserFunctions from "./SystemPathDB.userFunctions.mjs";
+import addUserFunctions, {
+  updateUsers,
+} from "./SystemPathDB.userFunctions.mjs";
 import errors from "./SystemPathDB.errors.mjs";
 
 export default class SystemPathDB {
@@ -48,13 +50,13 @@ export default class SystemPathDB {
           }
           resolve((this.updating = false));
         }.bind(this)
-      ).then(() => this.updateCache());
+      ).then(() => this.updateCache().then(() => updateUsers.bind(this)()));
     }
   }
   updateCache() {
     if (!this.updatingCache) {
       this.updatingCache = true;
-      new Promise(async (resolve) => {
+      return new Promise(async (resolve) => {
         for (let path in this.cache) {
           while (this.lock.includes(path)) {
             await new Promise((resolve) => setTimeout(() => resolve(), 100));
