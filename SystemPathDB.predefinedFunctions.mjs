@@ -23,6 +23,32 @@ export default function SystemPathDBPredefinedFunctions() {
     } while (absolutePath.includes("\\"));
     return absolutePath;
   });
+  this.addStructureFunction("new", function ({}, name, content = null) {
+    return new Promise((resolve, reject) => {
+      const lockKey = `/${name}`;
+      const location = `${this.folderLocation}/${name}`;
+      if (!this.lock.includes(lockKey)) {
+        this.lock.push(lockKey);
+        if (content) {
+          fs.writeFile(`${this.folderLocation}/${name}`, content, (err) => {
+            this.lock.splice(this.lock.indexOf(location), 1);
+            err ? reject(err) : resolve(this.update());
+          });
+        } else {
+          fs.mkdir(`${this.folderLocation}/${name}`, (err) => {
+            this.lock.splice(this.lock.indexOf(location), 1);
+            err ? reject(err) : resolve(this.update());
+          });
+        }
+      } else {
+        reject({
+          type: this.errors.OPERATION_LOCKED,
+          message: "Already creating a new object at given location.",
+          lock: { key: lockKey },
+        });
+      }
+    });
+  });
   this.addDirFunction("getAbsolutePath", ({ path }) => {
     let absolutePath = `${this.folderLocation}${path}`;
     do {
