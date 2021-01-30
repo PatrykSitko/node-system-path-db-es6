@@ -57,26 +57,15 @@ export function updateUsers() {
 export default function SystemPathDBUserFunctions() {
   this.addStructureFunction(
     "registerUser",
-    async (
-      { getDatabaseStructure },
-      firstname,
-      lastname,
-      birthdate,
-      email,
-      password
-    ) => {
+    async ({ getDatabaseStructure }, registrationData = {}) => {
       if (!getDatabaseStructure().includes("users")) {
         await getDatabaseStructure().new("users");
       }
       if (!getDatabaseStructure().users.includes(`${email}_USER`)) {
-        await getDatabaseStructure().users.new(`${email}.USER`, {
-          firstname,
-          lastname,
-          birthdate,
-          email,
-          password,
-          "authentication-tokens": {},
-        });
+        await getDatabaseStructure().users.new(
+          `${email}.USER`,
+          registrationData
+        );
       }
       return getDatabaseStructure().users.includes(`${email}_USER`);
     }
