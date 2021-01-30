@@ -136,34 +136,44 @@ export default function SystemPathDBPredefinedFunctions() {
   });
   this.addFileFunction("isDirectory", () => false);
   this.addFileFunction("isFile", () => true);
-  this.addFileFunction("read", async function ({ key, path, extention }) {
-    if (!this.cache[path]) {
-      const data = await new Promise(async (resolve, reject) => {
-        while (this.lock.includes(path)) {
-          await new Promise((resolve) => setTimeout(() => resolve(), 100));
+  this.addFileFunction(
+    "read",
+    async function (
+      { key, path, extention },
+      skipCashe_ForceReadFromFile = false
+    ) {
+      if (
+        !this.cache[path] ||
+        !this.userCache[key] ||
+        skipCashe_ForceReadFromFile
+      ) {
+        const data = await new Promise(async (resolve, reject) => {
+          while (this.lock.includes(path) || this.userLock.includes(key)) {
+            await new Promise((resolve) => setTimeout(() => resolve(), 100));
+          }
+          fs.readFile(`${this.folderLocation}/${path}`, (err, data) =>
+            err
+              ? reject(err)
+              : resolve(
+                  (typeof extention === "string" &&
+                    extention.toLowerCase() === "json") ||
+                    extention.toLowerCase() === "user"
+                    ? JSON.parse(data.toString())
+                    : data
+                )
+          );
+        });
+        if (extention.toLowerCase() === "user") {
+          this.userCache[key] = data;
+        } else {
+          this.cache[path] = { data, extention };
         }
-        fs.readFile(`${this.folderLocation}/${path}`, (err, data) =>
-          err
-            ? reject(err)
-            : resolve(
-                (typeof extention === "string" &&
-                  extention.toLowerCase() === "json") ||
-                  extention.toLowerCase() === "user"
-                  ? JSON.parse(data.toString())
-                  : data
-              )
-        );
-      });
-      if (extention.toLowerCase() === "user") {
-        this.userCache[key] = data;
-      } else {
-        this.cache[path] = { data, extention };
       }
+      return extention.toLowerCase() === "user"
+        ? this.userCache[key]
+        : this.cache[path].data;
     }
-    return extention.toLowerCase() === "user"
-      ? this.userCache[key]
-      : this.cache[path].data;
-  });
+  );
   this.addFileFunction("write", function ({ path }, content) {
     return new Promise(async (resolve, reject) => {
       while (this.lock.includes(path)) {
