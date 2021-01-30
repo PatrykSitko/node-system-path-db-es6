@@ -158,7 +158,15 @@ export default function SystemPathDBPredefinedFunctions() {
                   (typeof extention === "string" &&
                     extention.toLowerCase() === "json") ||
                     extention.toLowerCase() === "user"
-                    ? JSON.parse(data.toString())
+                    ? (() => {
+                        let parsedData = {};
+                        try {
+                          return JSON.parse(data.toString());
+                        } catch (err) {
+                          console.error(err);
+                          return {};
+                        }
+                      })()
                     : data
                 )
           );
@@ -174,16 +182,28 @@ export default function SystemPathDBPredefinedFunctions() {
         : this.cache[path].data;
     }
   );
-  this.addFileFunction("write", function ({ path }, content) {
+  this.addFileFunction("write", function ({ path, key }, content) {
     return new Promise(async (resolve, reject) => {
       while (this.lock.includes(path)) {
         await new Promise((resolve) => setTimeout(() => resolve(), 100));
       }
-      this.lock.push(path);
-      fs.writeFile(`${this.folderLocation}/${path}`, content, (err) => {
-        this.lock.splice(this.lock.indexOf(path), 1);
-        err ? reject(err) : resolve(this.update());
-      });
+      if (key.includes("_USER")) {
+        this.userLock.push(key);
+      } else {
+        this.lock.push(path);
+      }
+      fs.writeFile(
+        `${this.folderLocation}/${path}`,
+        typeof content === "object" ? JSON.stringify(content) : content,
+        (err) => {
+          if (key.includes("_USER")) {
+            this.userLock.splice(this.lock.indexOf(key), 1);
+          } else {
+            this.lock.splice(this.lock.indexOf(path), 1);
+          }
+          err ? reject(err) : resolve(this.update());
+        }
+      );
     });
   });
   this.addFileFunction("delete", function ({ path }) {
