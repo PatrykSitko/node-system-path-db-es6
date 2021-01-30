@@ -136,7 +136,7 @@ export default function SystemPathDBPredefinedFunctions() {
   });
   this.addFileFunction("isDirectory", () => false);
   this.addFileFunction("isFile", () => true);
-  this.addFileFunction("read", async function ({ path, extention }) {
+  this.addFileFunction("read", async function ({ key, path, extention }) {
     if (!this.cache[path]) {
       const data = await new Promise(async (resolve, reject) => {
         while (this.lock.includes(path)) {
@@ -148,15 +148,21 @@ export default function SystemPathDBPredefinedFunctions() {
             : resolve(
                 (typeof extention === "string" &&
                   extention.toLowerCase() === "json") ||
-                  "USER"
+                  extention.toLowerCase() === "user"
                   ? JSON.parse(data.toString())
                   : data
               )
         );
       });
-      this.cache[path] = { data, extention };
+      if (extention.toLowerCase() === "user") {
+        this.userCache[key] = data;
+      } else {
+        this.cache[path] = { data, extention };
+      }
     }
-    return this.cache[path].data;
+    return extention.toLowerCase() === "user"
+      ? this.userCache[key]
+      : this.cache[path].data;
   });
   this.addFileFunction("write", function ({ path }, content) {
     return new Promise(async (resolve, reject) => {
