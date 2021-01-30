@@ -81,7 +81,7 @@ export default function SystemPathDBPredefinedFunctions() {
         if (content) {
           fs.writeFile(
             `${this.folderLocation}/${path}/${name}`,
-            content,
+            typeof content === "object" ? JSON.stringify(content) : content,
             (err) => {
               this.lock.splice(this.lock.indexOf(location), 1);
               err ? reject(err) : resolve(this.update());
@@ -146,8 +146,9 @@ export default function SystemPathDBPredefinedFunctions() {
           err
             ? reject(err)
             : resolve(
-                typeof extention === "string" &&
-                  extention.toLowerCase() === "json"
+                (typeof extention === "string" &&
+                  extention.toLowerCase() === "json") ||
+                  "USER"
                   ? JSON.parse(data.toString())
                   : data
               )
