@@ -56,14 +56,14 @@ export default class SystemPathDB {
   updateCache() {
     if (!this.updatingCache) {
       this.updatingCache = true;
-      return new Promise(async (resolve) => {
+      return new Promise(async (resolve, reject) => {
         for (let path in this.cache) {
           while (this.lock.includes(path)) {
             await new Promise((resolve) => setTimeout(() => resolve(), 100));
           }
           fs.readFile(`${this.folderLocation}/${path}`, (err, data) => {
             if (err) {
-              throw new Error(err);
+              reject(err);
             } else {
               this.cache[path].data =
                 typeof this.cache[path].extention === "string" &&
