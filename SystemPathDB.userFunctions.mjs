@@ -26,7 +26,7 @@ export function updateUsers() {
                 do {
                   readFunctionNotAvailable = false;
                   try {
-                    userData = await this.structure.users[user].read();
+                    userData = await this.structure.users[user].read(true);
                   } catch (err) {
                     readFunctionNotAvailable = true;
                   }
