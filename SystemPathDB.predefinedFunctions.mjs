@@ -13,6 +13,9 @@ export default function SystemPathDBPredefinedFunctions() {
     });
     return Object.keys(copy);
   });
+  this.addStructureFunction("includes", ({ getDatabaseStructure }, key) =>
+    getDatabaseStructure().list().includes(key)
+  );
   this.addStructureFunction("getAbsolutePath", () => {
     let absolutePath = `${this.folderLocation}`;
     do {
