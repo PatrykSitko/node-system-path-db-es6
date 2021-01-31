@@ -97,7 +97,7 @@ This function has the following 2 parameters:
 
 #### >>> Functionality of; addDirFunction & addFileFunction:
 
-The addDirFunction and addFileFunction is used to add functions to variables of type directory (or file respectively) located inside of the json structure. Those directory (or file) type variables can be located within the structure variable. The structure variable is accessible via the SystemPathDB instance ([as mentioned above](#accessing-the-monitored-structure)) and those functions can be invoked from the instance itself (Ex.:`databaseName.addFileFunction("funcName",console.log,"targetKey");`).
+The addDirFunction and addFileFunction is used to add functions to variables of type directory (or file respectively) located inside of the json structure. Those directory (or file) type variables can be located within the structure variable. The structure variable is accessible via the SystemPathDB instance ([as mentioned above](#accessing-the-monitored-structure)) and those functions can be invoked from the instance itself (Ex.:`databaseName.addFileFunction("funcName",console.log,(currentPath)=>true);`).
 
 This function has the following 3 parameters:
 
@@ -179,9 +179,10 @@ This function has the following 3 parameters:
      <br>
      This function is made available to render easier access to the database structure from within the anonimous function.
 
-3. target.
+3. (optional) target function.
 
-   Is used to target specific keys inside of the structure.
+   Is used to target specific pathways inside of the structure.
+   This function will recieve the current path as parameter to use to determine if the specific function has to be added to the current pathway. By default, all structure paths are targeted.
    <br>
    Example:
    <br>
@@ -192,12 +193,13 @@ This function has the following 3 parameters:
    `/documents/file.pdf` &
    `/downoads/documents/ect...`
    <br>
-   Target: `documents`
+   The target to add the specific function to: `documents`
    <br>
-   By adding a function to a specific (key/)target.
-   <br>The function will be invocable only trough the targeted key inside of the structure; Example:
+   By adding a function to a specific target.
    <br>
-   `databaseName.addDirFunction("consoleLogAttributes",console.log,"documents");`
+   The function will be invocable only trough the targeted pathway inside of the structure; Example:
+   <br>
+   `databaseName.addDirFunction("consoleLogAttributes",console.log,(pathway)=>pathway.endsWith("documents"));`
    <br>
    valid invocations:
    <br>
@@ -207,21 +209,9 @@ This function has the following 3 parameters:
    <br>
    invalid invocations:
    <br>
-   `databaseName.structure.documents.file_pdf.consoleLogAttributes();` (it's nor a directory nor the targeted key.)
+   `databaseName.structure.documents.file_pdf.consoleLogAttributes();` (it's not the target.)
    <br>
-   `databaseName.structure.downloads.consoleLogAttributes();` (it's not the targeted key.)
-
-   **(
-   Missing target functionality; Target structure paths:
-   <br>
-   `databaseName.addDirFunction("consoleLogAttributes",console.log,"downloads/documents");`
-   )**
-
-   By default addDirFunction targets everything using the asterix as pointer ("\*").
-   <br>
-   And addFileFunction targets everything using the asterix-dot-asterix pointer ("\*.\*").
-   <br>
-   Both are default values of the target attribute of their respective function (addDirFunction & addFileFunction).
+   `databaseName.structure.downloads.consoleLogAttributes();` (it's not the target.)
 
 ---
 
