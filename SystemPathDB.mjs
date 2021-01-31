@@ -216,14 +216,14 @@ export default class SystemPathDB {
     this.functions.structure.push({ funcName, func });
     this.update();
   }
-  addDirFunction(funcName, func, target=()=>true) {
+  addDirFunction(funcName, func, target = () => true) {
     if (!this.functionNames.dir.includes(funcName)) {
       this.functionNames.dir.push(funcName);
     }
     this.functions.dir.push({ target, funcName, func });
     this.update();
   }
-  addFileFunction(funcName, func, target=()=>true) {
+  addFileFunction(funcName, func, target = () => true) {
     if (!this.functionNames.file.includes(funcName)) {
       this.functionNames.file.push(funcName);
     }
@@ -350,8 +350,7 @@ function objectify(
     if (fs.lstatSync(`${folderLocation}/${currentPath}/${key}`).isDirectory()) {
       for (let i = 0; i < functions.dir.length; i++) {
         let { target, funcName, func } = functions.dir[i];
-        if (typeof target === "function" && target(`${currentPath}/${key}`)
-        ) {
+        if (typeof target === "function" && target(`${currentPath}/${key}`)) {
           requestedFunctions[funcName] = func.bind(this, {
             ...objectifiedPath[objectKey],
             getDatabaseStructure: () => this.get(`${currentPath}/${key}`),
@@ -363,7 +362,7 @@ function objectify(
     ) {
       for (let i = 0; i < functions.file.length; i++) {
         let { target, funcName, func } = functions.file[i];
-        if (typeof target === "function" && target(`${currentPath}/${key}`) {
+        if (typeof target === "function" && target(`${currentPath}/${key}`)) {
           requestedFunctions[funcName] = func.bind(this, {
             ...objectifiedPath[objectKey],
             getDatabaseStructure: () => this.get(`${currentPath}/${key}`),
