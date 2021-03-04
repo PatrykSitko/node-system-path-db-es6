@@ -29,7 +29,7 @@ export default function SystemPathDBPredefinedFunctions() {
       const location = `${this.folderLocation}/${name}`;
       if (!this.lock.includes(lockKey)) {
         this.lock.push(lockKey);
-        if (content) {
+        if (content !== null || content !== undefined) {
           fs.writeFile(`${this.folderLocation}/${name}`, content, (err) => {
             this.lock.splice(this.lock.indexOf(location), 1);
             err ? reject(err) : resolve(this.update());
@@ -78,7 +78,7 @@ export default function SystemPathDBPredefinedFunctions() {
       const location = `${this.folderLocation}/${path}/${name}`;
       if (!this.lock.includes(lockKey)) {
         this.lock.push(lockKey);
-        if (content) {
+        if (content !== null || content !== undefined) {
           fs.writeFile(
             `${this.folderLocation}/${path}/${name}`,
             typeof content === "object" ? JSON.stringify(content) : content,
@@ -155,11 +155,10 @@ export default function SystemPathDBPredefinedFunctions() {
             err
               ? reject(err)
               : resolve(
-                  (typeof extention === "string" &&
-                    extention.toLowerCase() === "json") ||
-                    extention.toLowerCase() === "user"
+                  typeof extention === "string" &&
+                    (extention.toLowerCase() === "json" ||
+                      extention.toLowerCase() === "user")
                     ? (() => {
-                        let parsedData = {};
                         try {
                           return JSON.parse(data.toString());
                         } catch (err) {
