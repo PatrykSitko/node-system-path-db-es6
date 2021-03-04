@@ -170,7 +170,10 @@ export default function SystemPathDBPredefinedFunctions() {
                 )
           );
         });
-        if (extention.toLowerCase() === "user") {
+        if (
+          typeof extention === "string" &&
+          extention.toLowerCase() === "user"
+        ) {
           this.userCache[key] = data;
         } else {
           this.cache[path] = { data, extention };
