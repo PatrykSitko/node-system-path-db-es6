@@ -1,5 +1,5 @@
 {
-  "name": "system-path-db",
+  "name": "node-system-path-db-es6",
   "version": "1.0.0",
   "description": "SystemPathDB is a library for Node.js with focus on objectifying the specified path location.",
   "main": "SystemPathDB.main.mjs",
